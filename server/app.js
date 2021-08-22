@@ -5,6 +5,7 @@ const port = 4000 || process.env.PORT;
 const schema = require("./schema/schema");
 const logger = require("./helpers/logger");
 const mongoose = require("mongoose");
+const cors = require("cors");
 require("dotenv").config();
 
 // Process Error
@@ -26,6 +27,8 @@ mongoose.connect(process.env.MONGO_CONNECTION, {
     useFindAndModify: false,
     useUnifiedTopology: true,
 });
+
+app.use(cors("*"));
 
 // Mongoose Error
 process.on("unhandledRejection", (err) => {
